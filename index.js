@@ -1,51 +1,68 @@
-import { createStore, applyMiddleware} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+import axios from 'axios';
+import thunk from 'redux-thunk';
 
-//action name constant
+// Action name constants
 const INCREMENT = 'increment';
 const DECREMENT = 'decrement';
 const INCREMENT_BY_AMOUNT = 'incrementByAmount';
+const INIT = 'init';
 
+// Store
+const store = createStore(reducer, applyMiddleware(logger.default, thunk.default));
+const history = [];
 
-
-//store
-const store = createStore(reducer, applyMiddleware(logger.default )) //this is deprecated
-const history = []
-
-//initialized state
+// Initialized state
 function reducer(state = { amount: 1 }, action) {
-    switch (action.type) {
-      case INCREMENT:
-        return { amount: state.amount + 1 };
-      case DECREMENT:
-        return { amount: state.amount - 1 };
-      case INCREMENT_BY_AMOUNT:
-        return { amount: state.amount + action.payload };
-      default:
-        return state;
-    }
+  switch (action.type) {
+    case INCREMENT:
+      return { amount: state.amount + 1 };
+    case DECREMENT:
+      return { amount: state.amount - 1 };
+    case INCREMENT_BY_AMOUNT:
+      return { amount: state.amount + action.payload };
+    case INIT:
+      return { amount: action.payload };
+    default:
+      return state;
   }
-  
+}
 
-// //global state 
-// console.log(store.getState())
-//OR
 store.subscribe(() => {
-    history.push(store.getState())
-    console.log(history);  //run automatically on state update
-})
+  history.push(store.getState());
+  console.log(history);
+});
 
-setInterval(() => {
-    store.dispatch(incrementbyAmount(200))
-}, 5000)
-
-//Action creator
-function incrementbyAmount(value) {
-    return{type:INCREMENT_BY_AMOUNT, payload:value}
+// Async API call using redux-thunk
+function getUser(id) {
+  return async (dispatch, getState) => {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/account/${id}`);
+      dispatch(initializeUser(data.amount));
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
 }
+
+//action creator
+function initializeUser(value) {
+  return { type: INIT, payload: value };
+}
+
+function incrementByAmount(value) {
+  return { type: INCREMENT_BY_AMOUNT, payload: value };
+}
+
 function increment() {
-    return{type:INCREMENT}
+  return { type: INCREMENT };
 }
+
 function decrement() {
-    return{type:DECREMENT}
+  return { type: DECREMENT };
 }
+
+setTimeout(() => {
+  store.dispatch(getUser(2));
+}, 5000);
