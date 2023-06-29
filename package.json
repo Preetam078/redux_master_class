@@ -1,0 +1,25 @@
+{
+  "name": "redux_master_class",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Preetam078/redux_master_class.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Preetam078/redux_master_class/issues"
+  },
+  "homepage": "https://github.com/Preetam078/redux_master_class#readme",
+  "dependencies": {
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6"
+  }
+}
