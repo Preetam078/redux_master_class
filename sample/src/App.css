@@ -1,0 +1,15 @@
+.App{
+  padding: 20px;
+}
+
+.App h1 {
+  color: azure;
+}
+.account_container{
+  padding: 20px;
+  border: 1px solid beige;
+}
+.feature {
+  display: flex;
+  justify-content: space-around;
+}
