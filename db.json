@@ -1,14 +1,46 @@
 {
-    "account":[
-        {"id":1, "amount":100},
-        {"id":2, "amount":200},
-        {"id":3, "amount":300},
-        {"id":4, "amount":400}
-    ],
-    "bonus":[
-        {"id":1, "points":3},
-        {"id":2, "points":4},
-        {"id":3, "points":6},
-        {"id":4, "points":8}
-    ]
+  "account": [
+    {
+      "id": 1,
+      "amount": 10000000
+    },
+    {
+      "id": 2,
+      "amount": 800
+    },
+    {
+      "id": 3,
+      "amount": 10000000
+    },
+    {
+      "id": 4,
+      "amount": 200
+    },
+    {
+      "id": 5,
+      "amount": 600
+    },
+    {
+      "id": 6,
+      "amount": 500
+    }
+  ],
+  "bonus": [
+    {
+      "id": 1,
+      "points": 3
+    },
+    {
+      "id": 2,
+      "points": 4
+    },
+    {
+      "id": 3,
+      "points": 6
+    },
+    {
+      "id": 4,
+      "points": 8
+    }
+  ]
 }
